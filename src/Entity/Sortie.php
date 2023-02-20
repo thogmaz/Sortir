@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SortieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,11 +34,29 @@ class Sortie
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $infosSortie = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $etat = null;
+    #[ORM\ManyToMany(targetEntity: Participant::class, mappedBy: 'sortie')]
+    private Collection $participant;
 
-    #[ORM\Column(length: 50)]
-    private ?string $nomCampus = null;
+    #[ORM\ManyToOne(inversedBy: 'sorties')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Participant $organisateur = null;
+
+    #[ORM\ManyToOne(inversedBy: 'sorties')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Campus $campus = null;
+
+    #[ORM\ManyToOne(inversedBy: 'sorties')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Etat $etat = null;
+
+    #[ORM\ManyToOne(inversedBy: 'sorties')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Lieu $lieu = null;
+
+    public function __construct()
+    {
+        $this->participant = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -115,26 +135,80 @@ class Sortie
         return $this;
     }
 
-    public function getEtat(): ?string
+
+
+
+    /**
+     * @return Collection<int, Participant>
+     */
+    public function getParticipant(): Collection
+    {
+        return $this->participant;
+    }
+
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participant->contains($participant)) {
+            $this->participant->add($participant);
+            $participant->addSortie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participant $participant): self
+    {
+        if ($this->participant->removeElement($participant)) {
+            $participant->removeSortie($this);
+        }
+
+        return $this;
+    }
+
+    public function getOrganisateur(): ?Participant
+    {
+        return $this->organisateur;
+    }
+
+    public function setOrganisateur(?Participant $organisateur): self
+    {
+        $this->organisateur = $organisateur;
+
+        return $this;
+    }
+
+    public function getCampus(): ?Campus
+    {
+        return $this->campus;
+    }
+
+    public function setCampus(?Campus $campus): self
+    {
+        $this->campus = $campus;
+
+        return $this;
+    }
+
+    public function getEtat(): ?Etat
     {
         return $this->etat;
     }
 
-    public function setEtat(string $etat): self
+    public function setEtat(?Etat $etat): self
     {
         $this->etat = $etat;
 
         return $this;
     }
 
-    public function getNomCampus(): ?string
+    public function getLieu(): ?Lieu
     {
-        return $this->nomCampus;
+        return $this->lieu;
     }
 
-    public function setNomCampus(string $nomCampus): self
+    public function setLieu(?Lieu $lieu): self
     {
-        $this->nomCampus = $nomCampus;
+        $this->lieu = $lieu;
 
         return $this;
     }
