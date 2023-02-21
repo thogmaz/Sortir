@@ -66,22 +66,22 @@ class Ville
         return $this->lieux;
     }
 
-    public function addLieux(Lieu $lieux): self
+    public function addLieu(Lieu $lieu): self
     {
-        if (!$this->lieux->contains($lieux)) {
-            $this->lieux->add($lieux);
-            $lieux->setVille($this);
+        if (!$this->lieux->contains($lieu)) {
+            $this->lieux->add($lieu);
+            $lieu->setVille($this);
         }
 
         return $this;
     }
 
-    public function removeLieux(Lieu $lieux): self
+    public function removeLieu(Lieu $lieu): self
     {
-        if ($this->lieux->removeElement($lieux)) {
+        if ($this->lieux->removeElement($lieu)) {
             // set the owning side to null (unless already changed)
-            if ($lieux->getVille() === $this) {
-                $lieux->setVille(null);
+            if ($lieu->getVille() === $this) {
+                $lieu->setVille(null);
             }
         }
 
