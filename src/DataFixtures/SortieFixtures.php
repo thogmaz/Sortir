@@ -10,6 +10,38 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class SortieFixtures extends Fixture implements DependentFixtureInterface
 {
+
+    public function load(ObjectManager $manager): void
+    {
+            $balade = new Sortie();
+            $balade->setNom("balade");
+            $balade->setDateHeureDebut(new \DateTime('2023-02-21 12:00:00'));
+            $balade->setDuree(new \DateTime('02:30:00'));
+            $balade->setDateLimiteInscription(new \DateTime('2023-02-20 12:00:00'));
+            $balade->setOrganisateur($this->getReference("virginie"));
+            $balade->setNbInscriptionsMax(20);
+            $balade->setInfosSortie("balade au parc");
+            $balade->setCampus($this->getReference("campus-rennes"));
+            $balade->setEtat($this->getReference("crée"));
+            $balade->setLieu($this->getReference("parc-rennes"));
+            $manager->persist($balade);
+
+        $fete = new Sortie();
+        $fete->setNom("fete");
+        $fete->setDateHeureDebut(new \DateTime('2023-02-28 20:00:00'));
+        $fete->setDuree(new \DateTime('03:30:00'));
+        $fete->setDateLimiteInscription(new \DateTime('2023-02-27 20:00:00'));
+        $fete->setOrganisateur($this->getReference("kenza"));
+        $fete->setNbInscriptionsMax(30);
+        $fete->setInfosSortie("fete");
+        $fete->setCampus($this->getReference("campus-nantes"));
+        $fete->setEtat($this->getReference("ouverte"));
+        $fete->setLieu($this->getReference("bar-nantes"));
+        $manager->persist($fete);
+
+            $manager->flush();
+        }
+
     public function getDependencies(): array
     {
         return array(
@@ -19,32 +51,4 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
             ParticipantFixtures::class
         );
     }
-    public function load(ObjectManager $manager)
-    {
-            $balade = new Sortie();
-            $balade->setNom("Balade");
-            $balade->setDateHeureDebut(new \DateTimeImmutable('2023-02-21'));
-            $balade->setDuree(new \DateTimeImmutable('2023-02-21'));
-            $balade->setDateLimiteInscription(new \DateTimeImmutable('2023-02-20'));
-            $balade->setNbInscriptionsMax(20);
-            $balade->setInfosSortie("Balade en forêt");
-            $balade->setCampus($this->getReference("Campus de Nantes"));
-            $balade->setEtat($this->getReference("Crée"));
-            $balade->setLieu($this->getReference("Nantes"));
-            $manager->persist($balade);
-
-        $fete = new Sortie();
-        $fete->setNom("Fête");
-        $fete->setDateHeureDebut(new \DateTimeImmutable('2023-02-28'));
-        $fete->setDuree(new \DateTimeImmutable('2023-02-21'));
-        $fete->setDateLimiteInscription(new \DateTimeImmutable('2023-02-27'));
-        $fete->setNbInscriptionsMax(30);
-        $fete->setInfosSortie("Fête");
-        $fete->setCampus($this->getReference("Campus de Rennes"));
-        $balade->setEtat($this->getReference("Ouverte"));
-        $balade->setCampus($this->getReference("Rennes"));
-        $manager->persist($fete);
-
-            $manager->flush();
-        }
 }

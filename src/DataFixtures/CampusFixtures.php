@@ -8,22 +8,22 @@ use Doctrine\Persistence\ObjectManager;
 
 class CampusFixtures extends Fixture
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
-        $nantes = new Campus();
-        $nantes->setNom("Nantes");
-        $manager->persist($nantes);
-        $this->setReference("Campus de Nantes", $nantes);
+        $campusNantes = new Campus();
+        $campusNantes->setNom("Nantes");
+        $manager->persist($campusNantes);
+        $this->addReference("campus-nantes", $campusNantes);
 
-        $rennes = new Campus();
-        $rennes->setNom("Rennes");
-        $manager->persist($rennes);
-        $this->setReference("Campus de Rennes", $rennes);
+        $campusRennes = new Campus();
+        $campusRennes->setNom("Rennes");
+        $manager->persist($campusRennes);
+        $this->addReference("campus-rennes", $campusRennes);
 
-        $quimper = new Campus();
-        $quimper->setNom("Quimper");
-        $manager->persist($quimper);
-        $this->setReference("Campus de Quimper", $quimper);
+        $campusQuimper = new Campus();
+        $campusQuimper->setNom("Quimper");
+        $manager->persist($campusQuimper);
+        $this->addReference("campus-quimper", $campusQuimper);
 
         $manager->flush();
     }

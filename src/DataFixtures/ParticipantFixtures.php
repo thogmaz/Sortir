@@ -15,46 +15,46 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
             CampusFixtures::class
         );
     }
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
             $virginie = new Participant();
             $virginie->setNom("Merlino");
             $virginie->setPrenom("Virginie");
-            $virginie->setTelephone("numéro");
+            $virginie->setTelephone("0611111111");
             $virginie->setEmail("virginie@gmail.com");
             $virginie->setPassword("12345");
-            $virginie->setActif(1);
+            $virginie->setActif(true);
             $virginie->setPseudo("virg01");
             $virginie->setPhotoProfil("Nom");
-            $virginie->setCampus($this->getReference("Campus de Rennes"));
+            $virginie->setCampus($this->getReference("campus-rennes"));
             $manager->persist($virginie);
-            $this->setReference("Participant", $virginie);
+            $this->addReference("virginie", $virginie);
 
         $thomas = new Participant();
         $thomas->setNom("Fanouillere");
         $thomas->setPrenom("Thomas");
-        $thomas->setTelephone("numéro");
+        $thomas->setTelephone("0622222222");
         $thomas->setEmail("thomas@gmail.com");
         $thomas->setPassword("67890");
-        $thomas->setActif(1);
+        $thomas->setActif(true);
         $thomas->setPseudo("thogmaz");
         $thomas->setPhotoProfil("Nom");
-        $thomas->setCampus($this->getReference("Campus de Quimper"));
+        $thomas->setCampus($this->getReference("campus-quimper"));
         $manager->persist($thomas);
-        $this->setReference("Participant", $thomas);
+        $this->addReference("thomas", $thomas);
 
         $kenza = new Participant();
         $kenza->setNom("Behladi");
         $kenza->setPrenom("Kenza");
-        $kenza->setTelephone("numéro");
+        $kenza->setTelephone("0633333333");
         $kenza->setEmail("kenza@gmail.com");
         $kenza->setPassword("24680");
-        $kenza->setActif(1);
+        $kenza->setActif(true);
         $kenza->setPseudo("knoozx");
         $kenza->setPhotoProfil("Nom");
-        $kenza->setCampus($this->getReference("Campus de Nantes"));
+        $kenza->setCampus($this->getReference("campus-nantes"));
         $manager->persist($kenza);
-        $this->setReference("Participant", $kenza);
+        $this->addReference("kenza", $kenza);
 
         $manager->flush();
         }

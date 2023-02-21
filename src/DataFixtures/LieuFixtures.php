@@ -16,25 +16,25 @@ class LieuFixtures extends Fixture implements DependentFixtureInterface
         );
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
-        $parc = new Lieu();
-        $parc->setNom("Parc machin");
-        $parc->setRue("Rue du parc");
-        $parc->setLatitude(48.117266);
-        $parc->setLongitude(-1.6777926);
-        $parc->setVille($this->getReference("Rennes"));
-        $this->setReference("Lieu", $parc);
-        $manager->persist($parc);
+        $parcRennes = new Lieu();
+        $parcRennes->setNom("parc-rennes");
+        $parcRennes->setRue("rue du parc");
+        $parcRennes->setLatitude(48.117266);
+        $parcRennes->setLongitude(-1.6777926);
+        $parcRennes->setVille($this->getReference("ville-rennes"));
+        $manager->persist($parcRennes);
+        $this->addReference("parc-rennes", $parcRennes);
 
-        $bar = new Lieu();
-        $bar->setNom("Bar machin");
-        $bar->setRue("Rue du bar");
-        $bar->setLatitude(58.117266);
-        $bar->setLongitude(-3.6777926);
-        $bar->setVille($this->getReference("Quimper"));
-        $this->setReference("Lieu", $bar);
-        $manager->persist($bar);
+        $barNantes = new Lieu();
+        $barNantes->setNom("bar machin");
+        $barNantes->setRue("rue du bar");
+        $barNantes->setLatitude(58.117266);
+        $barNantes->setLongitude(-3.6777926);
+        $barNantes->setVille($this->getReference("ville-nantes"));
+        $manager->persist($barNantes);
+        $this->addReference("bar-nantes", $barNantes);
 
         $manager->flush();
     }
