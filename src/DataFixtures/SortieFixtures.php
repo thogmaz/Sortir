@@ -24,6 +24,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
             $balade->setCampus($this->getReference("campus-rennes"));
             $balade->setEtat($this->getReference("crée"));
             $balade->setLieu($this->getReference("parc-rennes"));
+            $balade->addParticipant($this->getReference("michel"));
             $manager->persist($balade);
 
         $fete = new Sortie();

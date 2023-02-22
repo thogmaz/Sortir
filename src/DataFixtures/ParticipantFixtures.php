@@ -56,6 +56,19 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($kenza);
         $this->addReference("kenza", $kenza);
 
+        $michel = new Participant();
+        $michel->setNom("Jean");
+        $michel->setPrenom("Michel");
+        $michel->setTelephone("0644444444");
+        $michel->setEmail("michel@gmail.com");
+        $michel->setPassword("13579");
+        $michel->setActif(true);
+        $michel->setPseudo("mich");
+        $michel->setPhotoProfil("");
+        $michel->setCampus($this->getReference("campus-nantes"));
+        $manager->persist($michel);
+        $this->addReference("michel", $michel);
+
         $manager->flush();
         }
 
