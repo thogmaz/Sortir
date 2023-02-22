@@ -16,28 +16,30 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
     {
         $this->hasher = $hasher;
     }
+
     public function getDependencies(): array
     {
         return array(
             CampusFixtures::class
         );
     }
+
     public function load(ObjectManager $manager): void
     {
-            $virginie = new Participant();
-            $virginie->setNom("Merlino");
-            $virginie->setPrenom("Virginie");
-            $virginie->setTelephone("0611111111");
-            $virginie->setEmail("virginie@gmail.com");
-            $password = $this->hasher->hashPassword($virginie, '12345');
-            $virginie->setPassword($password);
-            $virginie->setActif(true);
-            $virginie->setPseudo("virg01");
-            $virginie->setPhotoProfil("");
-            $virginie->setCampus($this->getReference("campus-rennes"));
-            $virginie->setRoles(['ROLE_USER']);
-            $manager->persist($virginie);
-            $this->addReference("virginie", $virginie);
+        $virginie = new Participant();
+        $virginie->setNom("Merlino");
+        $virginie->setPrenom("Virginie");
+        $virginie->setTelephone("0611111111");
+        $virginie->setEmail("virginie@gmail.com");
+        $password = $this->hasher->hashPassword($virginie, '12345');
+        $virginie->setPassword($password);
+        $virginie->setActif(true);
+        $virginie->setPseudo("virg01");
+        $virginie->setPhotoProfil("");
+        $virginie->setCampus($this->getReference("campus-rennes"));
+        $virginie->setRoles(['ROLE_USER']);
+        $manager->persist($virginie);
+        $this->addReference("virginie", $virginie);
 
         $thomas = new Participant();
         $thomas->setNom("Fanouillere");
@@ -100,6 +102,6 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference("admin", $admin);
 
         $manager->flush();
-        }
+    }
 
 }

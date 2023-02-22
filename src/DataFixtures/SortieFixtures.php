@@ -13,19 +13,19 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-            $balade = new Sortie();
-            $balade->setNom("balade");
-            $balade->setDateHeureDebut(new \DateTimeImmutable('2023-02-21 12:00:00'));
-            $balade->setDuree(new \DateTimeImmutable('02:30:00'));
-            $balade->setDateLimiteInscription(new \DateTimeImmutable('2023-02-20 12:00:00'));
-            $balade->setOrganisateur($this->getReference("virginie"));
-            $balade->setNbInscriptionsMax(20);
-            $balade->setInfosSortie("balade au parc");
-            $balade->setCampus($this->getReference("campus-rennes"));
-            $balade->setEtat($this->getReference("crée"));
-            $balade->setLieu($this->getReference("parc-rennes"));
-            $balade->addParticipant($this->getReference("michel"));
-            $manager->persist($balade);
+        $balade = new Sortie();
+        $balade->setNom("balade");
+        $balade->setDateHeureDebut(new \DateTimeImmutable('2023-02-21 12:00:00'));
+        $balade->setDuree(new \DateTimeImmutable('02:30:00'));
+        $balade->setDateLimiteInscription(new \DateTimeImmutable('2023-02-20 12:00:00'));
+        $balade->setOrganisateur($this->getReference("virginie"));
+        $balade->setNbInscriptionsMax(20);
+        $balade->setInfosSortie("balade au parc");
+        $balade->setCampus($this->getReference("campus-rennes"));
+        $balade->setEtat($this->getReference("crée"));
+        $balade->setLieu($this->getReference("parc-rennes"));
+        $balade->addParticipant($this->getReference("michel"));
+        $manager->persist($balade);
 
         $fete = new Sortie();
         $fete->setNom("fete");
@@ -40,8 +40,8 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $fete->setLieu($this->getReference("bar-nantes"));
         $manager->persist($fete);
 
-            $manager->flush();
-        }
+        $manager->flush();
+    }
 
     public function getDependencies(): array
     {
