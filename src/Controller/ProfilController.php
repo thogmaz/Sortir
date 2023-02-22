@@ -8,11 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 class ProfilController extends AbstractController
 {
     #[Route('/profil', name: 'app_profil')]
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         // just set up a fresh $task object (remove the example data)
         $profil = $this->getUser();
@@ -21,17 +23,17 @@ class ProfilController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
-            $profil = $form->getData();
 
-            // ... perform some action, such as saving the task to the database
+            $entityManager->persist($profil);
+            $entityManager->flush();
+
+
 
             return $this->redirectToRoute('profil_success');
         }
 
-        return $this->renderForm('profil.html.twig', [
-            'form' => $form,
+        return $this->renderForm('profil/profil.html.twig', [
+            'profilForm' => $form,
         ]);
     }
 }

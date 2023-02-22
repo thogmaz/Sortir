@@ -1,10 +1,13 @@
-{% extends '../base.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
 
 {% block body %}
+    <h1>Register</h1>
 
+    {{ form_start(profilForm) }}
+    {{ form_widget(profilForm) }}
+
+    <button type="submit" class="btn">Register</button>
+    {{ form_end(profilForm) }}
 {% endblock %}
-
-{% block title %}
-
-{% endblock %}
-
