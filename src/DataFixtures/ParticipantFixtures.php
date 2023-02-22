@@ -97,7 +97,7 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
         $admin->setCampus($this->getReference("campus-quimper"));
         $admin->setRoles(['ROLE_ADMIN']);
         $manager->persist($admin);
-        $this->addReference("Admin", $admin);
+        $this->addReference("admin", $admin);
 
         $manager->flush();
         }
