@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Participant;
 use App\Form\ProfilType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,7 +15,7 @@ class ProfilController extends AbstractController
     public function new(Request $request): Response
     {
         // just set up a fresh $task object (remove the example data)
-        $profil = new Participant();
+        $profil = $this->getUser();
 
         $form = $this->createForm(ProfilType::class, $profil);
 

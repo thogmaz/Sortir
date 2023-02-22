@@ -14,7 +14,7 @@ class ProfilType extends AbstractType
         $builder
             ->add('email')
             ->add('roles')
-            ->add('password')
+            #mdp
             ->add('nom')
             ->add('prenom')
             ->add('telephone')
