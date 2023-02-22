@@ -13,15 +13,15 @@ class ProfilType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles')
+            #->add('roles')
             #mdp
             ->add('nom')
             ->add('prenom')
             ->add('telephone')
-            ->add('actif')
+            #->add('actif')
             ->add('pseudo')
             ->add('photoProfil')
-            ->add('sorties')
+            #->add('sorties')
             ->add('campus')
         ;
     }
