@@ -15,9 +15,9 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
     {
             $balade = new Sortie();
             $balade->setNom("balade");
-            $balade->setDateHeureDebut(new \DateTime('2023-02-21 12:00:00'));
-            $balade->setDuree(new \DateTime('02:30:00'));
-            $balade->setDateLimiteInscription(new \DateTime('2023-02-20 12:00:00'));
+            $balade->setDateHeureDebut(new \DateTimeImmutable('2023-02-21 12:00:00'));
+            $balade->setDuree(new \DateTimeImmutable('02:30:00'));
+            $balade->setDateLimiteInscription(new \DateTimeImmutable('2023-02-20 12:00:00'));
             $balade->setOrganisateur($this->getReference("virginie"));
             $balade->setNbInscriptionsMax(20);
             $balade->setInfosSortie("balade au parc");
@@ -28,9 +28,9 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
 
         $fete = new Sortie();
         $fete->setNom("fete");
-        $fete->setDateHeureDebut(new \DateTime('2023-02-28 20:00:00'));
-        $fete->setDuree(new \DateTime('03:30:00'));
-        $fete->setDateLimiteInscription(new \DateTime('2023-02-27 20:00:00'));
+        $fete->setDateHeureDebut(new \DateTimeImmutable('2023-02-28 20:00:00'));
+        $fete->setDuree(new \DateTimeImmutable('03:30:00'));
+        $fete->setDateLimiteInscription(new \DateTimeImmutable('2023-02-27 20:00:00'));
         $fete->setOrganisateur($this->getReference("kenza"));
         $fete->setNbInscriptionsMax(30);
         $fete->setInfosSortie("fete");

@@ -35,10 +35,10 @@ class EtatFixtures extends Fixture
         $manager->persist($passee);
         $this->addReference("passée", $passee);
 
-        $annulée = new Etat();
-        $annulée->setLibelle("annulée");
-        $manager->persist($cloturee);
-        $this->addReference("annulée", $annulée);
+        $annulee = new Etat();
+        $annulee->setLibelle("annulée");
+        $manager->persist($annulee);
+        $this->addReference("annulée", $annulee);
 
         $manager->flush();
     }

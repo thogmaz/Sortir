@@ -25,7 +25,7 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
             $virginie->setPassword("12345");
             $virginie->setActif(true);
             $virginie->setPseudo("virg01");
-            $virginie->setPhotoProfil("Nom");
+            $virginie->setPhotoProfil("");
             $virginie->setCampus($this->getReference("campus-rennes"));
             $manager->persist($virginie);
             $this->addReference("virginie", $virginie);
@@ -38,7 +38,7 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
         $thomas->setPassword("67890");
         $thomas->setActif(true);
         $thomas->setPseudo("thogmaz");
-        $thomas->setPhotoProfil("Nom");
+        $thomas->setPhotoProfil("");
         $thomas->setCampus($this->getReference("campus-quimper"));
         $manager->persist($thomas);
         $this->addReference("thomas", $thomas);
@@ -51,7 +51,7 @@ class ParticipantFixtures extends Fixture implements DependentFixtureInterface
         $kenza->setPassword("24680");
         $kenza->setActif(true);
         $kenza->setPseudo("knoozx");
-        $kenza->setPhotoProfil("Nom");
+        $kenza->setPhotoProfil("");
         $kenza->setCampus($this->getReference("campus-nantes"));
         $manager->persist($kenza);
         $this->addReference("kenza", $kenza);
