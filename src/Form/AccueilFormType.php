@@ -21,9 +21,9 @@ class AccueilFormType extends AbstractType
             ->add('campus')
             ->add('etat')
             ->add('lieu')
-            ->add('participants', AccueilFormType::class, [
-                'data_class' => Participant::class
-            ])
+            #->add('participants', AccueilFormType::class, [
+             #   'data_class' => Participant::class
+           # ])
             ->add('organisateur')
         ;
     }
@@ -31,7 +31,6 @@ class AccueilFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Sortie::class,
         ]);
     }
 }

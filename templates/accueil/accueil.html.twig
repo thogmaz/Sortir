@@ -4,10 +4,15 @@
 
 {% block body %}
     <h1>Accueil</h1>
+    <p>
+        {% if (app.user) %}
 
+    <div>Hello {{ app.user.pseudo }} !</div>
+    {% endif %}
+    </p>
     {{ form_start(accueilForm) }}
     {{ form_widget(accueilForm) }}
 
-    <button type="submit" class="btn">Register</button>
+    <button type="submit" class="btn">Rechercher</button>
     {{ form_end(accueilForm) }}
 {% endblock %}

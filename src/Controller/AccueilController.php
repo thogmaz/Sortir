@@ -15,7 +15,7 @@ class AccueilController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         // just set up a fresh $task object (remove the example data)
-        $sortie = $this->getUser();
+        $sortie = $this->getUser()->eraseCredentials();
 
         $form = $this->createForm(AccueilFormType::class, $sortie);
 
@@ -30,7 +30,8 @@ class AccueilController extends AbstractController
         }
 
         return $this->renderForm('accueil/accueil.html.twig', [
-            'accueilForm' => $form
+            'accueilForm' => $form,
+            'sortie'=> $sortie
         ]);
     }
 }
