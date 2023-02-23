@@ -11,9 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: SortieRepository::class)]
 class Sortie
 {
-    public function __toString(){
+    public function __toString()
+    {
         return $this->nom;
     }
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -36,7 +38,6 @@ class Sortie
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $infosSortie = null;
-
 
 
     #[ORM\ManyToOne(inversedBy: 'sorties')]
@@ -139,8 +140,6 @@ class Sortie
 
         return $this;
     }
-
-
 
 
     public function getCampus(): ?Campus

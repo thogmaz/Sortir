@@ -22,8 +22,7 @@ class ProfilType extends AbstractType
             ->add('pseudo')
             ->add('photoProfil')
             #->add('sorties')
-            ->add('campus')
-        ;
+            ->add('campus');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
