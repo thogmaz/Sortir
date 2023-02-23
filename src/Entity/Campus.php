@@ -12,7 +12,7 @@ class Campus
 {
     public function __toString()
     {
-        return $this->nom;
+        return $this->getNom();
     }
 
     #[ORM\Id]
