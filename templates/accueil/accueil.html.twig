@@ -15,4 +15,12 @@
 
     <button type="submit" class="btn">Rechercher</button>
     {{ form_end(accueilForm) }}
+    <div>
+        <ul>
+            {% for sortie in sorties %}
+            <li>
+                {{ sortie.id }}
+            </li>{% endfor %}
+        </ul>
+    </div>
 {% endblock %}
