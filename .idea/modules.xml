@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Sortir.iml" filepath="$PROJECT_DIR$/.idea/Sortir.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Utilisateurs/virg_/Documents/VIRGINIE/Programmation/PHP et Symfony/bucket-list/.idea/bucket-list.iml" filepath="$PROJECT_DIR$/../../../Utilisateurs/virg_/Documents/VIRGINIE/Programmation/PHP et Symfony/bucket-list/.idea/bucket-list.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../Utilisateurs/virg_/Documents/VIRGINIE/Programmation/PHP et Symfony/series/.idea/series.iml" filepath="$PROJECT_DIR$/../../../Utilisateurs/virg_/Documents/VIRGINIE/Programmation/PHP et Symfony/series/.idea/series.iml" />
     </modules>
   </component>

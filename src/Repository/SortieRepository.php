@@ -39,7 +39,7 @@ class SortieRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findByExampleField($value): array
+    public function findByFilter($value): array
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.campus = :val')
@@ -51,6 +51,8 @@ class SortieRepository extends ServiceEntityRepository
         ;
     }
 }
+
+
 
 //    /**
 //     * @return Sortie[] Returns an array of Sortie objects

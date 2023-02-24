@@ -21,7 +21,8 @@ class AccueilController extends AbstractController
         $form = $this->createForm(AccueilFormType::class, $sortie);
 
         $form->handleRequest($request);
-        $sorties = $sortieRepository->findByExampleField($sortie);
+        $sorties = $sortieRepository->findByFilter($sortie);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $entityManager->persist($sortie);
@@ -33,8 +34,8 @@ class AccueilController extends AbstractController
 
         return $this->renderForm('accueil/accueil.html.twig', [
             'accueilForm' => $form,
-            'sortie'=> $sortie,
-            'sorties' => $sorties
+            'sortie' => $sorties
         ]);
+
     }
 }
