@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Sortie;
 use App\Form\AccueilFormType;
+use App\Form\SearchForm;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,22 +23,22 @@ class AccueilController extends AbstractController
 
 
     #[Route('/accueil', name: 'app_accueil')]
-    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    public function index(Request $request): Response
     {
         $sorties = $this->sortieRepository->findAll();
-        $search = new Sortie();
-        $form = $this->createForm(AccueilFormType::class, $search);
+        $data = new Sortie();
+        $form = $this->createForm(SearchForm::class, $data);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $sorties = $this->sortieRepository->findByFilter($search);
+            $sorties = $this->sortieRepository->findByFilter($data);
 
         }
 
         return $this->render('accueil/accueil.html.twig', [
-            'sorties' => $sorties,
+            'data' => $data,
             'search'=>$form->createView()
         ]);
     }
