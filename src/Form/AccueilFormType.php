@@ -23,7 +23,7 @@ class AccueilFormType extends AbstractType
                 'class' => Sortie::class,
                 'required' => false
             ])
-            ->add('dateHeureDebut', DateTimeType::class, [
+           ->add('dateHeureDebut', DateTimeType::class, [
                 'label'=>'Date et heure de début',
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
@@ -51,16 +51,21 @@ class AccueilFormType extends AbstractType
 
             ->add('option1', CheckboxType::class, [
                 'label' => 'Sorties dont je suis organisateur',
-                'required' => false])
+                'required' => false,
+                'mapped'=>false
+            ])
             ->add('option2', CheckboxType::class, [
                 'label' => 'Sorties auxquelles je suis inscrit',
-                'required' => false])
+                'required' => false,
+                'mapped'=>false])
             ->add('option3', CheckboxType::class, [
                 'label' => 'Sorties auxquelles je ne suis pas inscrit',
-                'required' => false])
+                'required' => false,
+                'mapped'=>false])
             ->add('option4', CheckboxType::class, [
                 'label' => 'Sorties passées',
-                'required' => false])
+                'required' => false,
+                'mapped'=>false])
         ;
     }
 

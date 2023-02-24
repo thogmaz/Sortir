@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Sortie;
 use App\Form\AccueilFormType;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,30 +13,32 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AccueilController extends AbstractController
 {
-    #[Route('/accueil', name: 'app_accueil')]
-    public function index(Request $request, EntityManagerInterface $entityManager, SortieRepository $sortieRepository): Response
-    {
-        // just set up a fresh $task object (remove the example data)
-        $sortie = $this->getUser()->eraseCredentials();
+    private $sortieRepository;
 
-        $form = $this->createForm(AccueilFormType::class, $sortie);
+    public function __construct(SortieRepository $sortieRepository)
+    {
+        $this->sortieRepository = $sortieRepository;
+    }
+
+
+    #[Route('/accueil', name: 'app_accueil')]
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $sorties = $this->sortieRepository->findAll();
+        $search = new Sortie();
+        $form = $this->createForm(AccueilFormType::class, $search);
 
         $form->handleRequest($request);
-        $sorties = $sortieRepository->findByFilter($sortie);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $entityManager->persist($sortie);
-            $entityManager->flush();
+            $sorties = $this->sortieRepository->findByFilter($search);
 
-
-            return $this->redirectToRoute('accueil_success');
         }
 
-        return $this->renderForm('accueil/accueil.html.twig', [
-            'accueilForm' => $form,
-            'sortie' => $sorties
+        return $this->render('accueil/accueil.html.twig', [
+            'sorties' => $sorties,
+            'search'=>$form->createView()
         ]);
-
     }
 }

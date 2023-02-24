@@ -10,17 +10,20 @@
     <div>Hello {{ app.user.pseudo }} !</div>
     {% endif %}
     </p>
-    {{ form_start(accueilForm) }}
-    {{ form_widget(accueilForm) }}
+    {{ form_start(search) }}
+    {{ form_widget(search) }}
 
     <button type="submit" class="btn">Rechercher</button>
-    {{ form_end(accueilForm) }}
+    {{ form_end(search) }}
     <div>
         <ul>
-
+            {% if sorties %}
+                {% for sortie in sorties %}
             <li>
-                //todo liste à créer
+                {{ sortie.nom }}
             </li>
+            {% endfor %}
+            {% endif %}
         </ul>
     </div>
 {% endblock %}

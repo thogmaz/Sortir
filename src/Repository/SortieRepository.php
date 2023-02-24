@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Sortie;
+use App\Entity\Campus;
 use App\Form\AccueilFormType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,16 +40,16 @@ class SortieRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findByFilter($value): array
+
+    public function findByFilter($search) : array
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.campus = :val')
-            ->setParameter('val', $value)
-           ->orderBy('s.id', 'ASC')
-           ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query= $this->createQueryBuilder('s');
+
+        if($search->getCampus()){
+            $query = $query->andWhere('s.campus = :campus')
+                ->setParameter('campus',$search->getCampus());
+        }
+        return $query->getQuery()->getResult();
     }
 }
 
