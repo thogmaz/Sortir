@@ -18,9 +18,9 @@ class SearchData
     #[ORM\ManyToOne(inversedBy: 'sorties')]
     #[ORM\JoinColumn(nullable: false)]
     public ?Campus $campus = null;
-    public Boolean $option1 = false;
-    public Boolean $option2 = false;
-    public Boolean $option3 = false;
-    public Boolean $option4 = false;
+    public Bool $option1 = false;
+    public Bool $option2 = false;
+    public Bool $option3 = false;
+    public Bool $option4 = false;
 
 }

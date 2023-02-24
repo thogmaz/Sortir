@@ -17,10 +17,10 @@
     {{ form_end(search) }}
     <div>
         <ul>
-            {% if sorties %}
-                {% for sortie in sorties %}
+            {% if data %}
+                {% for d in data %}
             <li>
-                {{ sortie.nom }}
+                {{ d.nom }}
             </li>
             {% endfor %}
             {% endif %}

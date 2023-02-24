@@ -6,6 +6,7 @@ use App\Entity\Sortie;
 use App\Form\AccueilFormType;
 use App\Form\SearchForm;
 use App\Repository\SortieRepository;
+use App\Service\SearchData;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,7 @@ class AccueilController extends AbstractController
     public function index(Request $request): Response
     {
         $sorties = $this->sortieRepository->findAll();
-        $data = new Sortie();
+        $data = new SearchData();
         $form = $this->createForm(SearchForm::class, $data);
 
         $form->handleRequest($request);
