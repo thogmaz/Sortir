@@ -52,6 +52,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $match->setEtat($this->getReference("crée"));
         $match->setLieu($this->getReference("terrain-quimper"));
         $match->addParticipant($this->getReference("michel"));
+        $match->addParticipant($this->getReference("virginie"));
         $manager->persist($match);
 
         $laserGame = new Sortie();

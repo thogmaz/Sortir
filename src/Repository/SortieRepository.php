@@ -68,6 +68,12 @@ class SortieRepository extends ServiceEntityRepository
                 ->setParameter('organisateur', $user);
         }
 
+        if($search->option2){
+            $query = $query
+                ->andWhere(':participant MEMBER OF s.participants')
+                ->setParameter('participant', $user);
+        }
+
 
         return $query->getQuery()->getResult();
     }
