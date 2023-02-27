@@ -13,10 +13,10 @@ class SearchData
     public ?string $nom = null;
 
 
-    public ?\DateTimeInterface $dateHeureDebut = null;
+    public ?\DateTimeInterface $dateDebutRecherche = null;
 
 
-    public ?\DateTimeInterface $dateLimiteInscription = null;
+    public ?\DateTimeInterface $dateFinRecherche = null;
 
 
     public ?Campus $campus = null;

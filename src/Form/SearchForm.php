@@ -22,13 +22,13 @@ class SearchForm extends AbstractType
             ->add('nom', TextType::class, [
                 'required' => false
             ])
-            ->add('dateHeureDebut', DateType::class, [
-                'label' => 'Date et heure de début',
+            ->add('dateDebutRecherche', DateType::class, [
+                'label' => 'Date début recherche',
                 'widget' => 'single_text',
                 'required' => false
             ])
-            #->add('duree')
-            ->add('dateLimiteInscription', DateType::class, [
+
+            ->add('dateFinRecherche', DateType::class, [
                 'widget' => 'single_text',
                 'required' => false
             ])

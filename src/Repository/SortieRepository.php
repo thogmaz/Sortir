@@ -55,6 +55,12 @@ class SortieRepository extends ServiceEntityRepository
                 ->setParameter('nom', "%{$search->nom}%");
 
         }
+
+        if (!empty($search->dateHeureDebut)) {
+            $query = $query->andWhere('s.nom LIKE :nom')
+                ->setParameter('nom', "%{$search->nom}%");
+
+        }
         return $query->getQuery()->getResult();
     }
 }
