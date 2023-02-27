@@ -56,9 +56,10 @@ class SortieRepository extends ServiceEntityRepository
 
         }
 
-        if (!empty($search->dateHeureDebut)) {
-            $query = $query->andWhere('s.nom LIKE :nom')
-                ->setParameter('nom', "%{$search->nom}%");
+        if (!empty($search->dateDebutRecherche) && ($search->dateFinRecherche)) {
+            $query = $query->andWhere('s.dateHeureDebut BETWEEN :dateDebutRecherche AND :dateFinRecherche')
+                ->setParameter('dateDebutRecherche',  $search->dateDebutRecherche)
+                ->setParameter('dateFinRecherche',  $search->dateFinRecherche);
 
         }
         return $query->getQuery()->getResult();

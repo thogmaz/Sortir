@@ -58,7 +58,8 @@ class SearchForm extends AbstractType
     function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => SearchData::class
+            'data_class' => SearchData::class,
+             'allow_extra_fields' => true
         ]);
 
     }
