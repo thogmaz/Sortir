@@ -19,6 +19,7 @@ class AccueilController extends AbstractController
     public function index(SortieRepository $sortieRepository, Request $request): Response
     {
         $data = new SearchData();
+        $data->campus = $this->getUser()->getCampus();
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
         $sorties = $sortieRepository->findByFilter($data);

@@ -12,30 +12,20 @@ class SearchData
 {
     public ?string $nom = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+
     public ?\DateTimeInterface $dateHeureDebut = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+
     public ?\DateTimeInterface $dateLimiteInscription = null;
 
-    #[ORM\ManyToOne(inversedBy: 'sorties')]
 
-    #[ORM\JoinColumn(nullable: false)]
     public ?Campus $campus = null;
 
 
-    public Bool $option1 = false;
-    public Bool $option2 = false;
-    public Bool $option3 = false;
-    public Bool $option4 = false;
+    public bool $option1 = false;
+    public bool $option2 = false;
+    public bool $option3 = false;
+    public bool $option4 = false;
 
-
-    /**
-     * @return Campus|null
-     */
-    public function getCampus(): ?Campus
-    {
-        return $this->campus;
-    }
 
 }

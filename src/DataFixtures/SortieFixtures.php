@@ -54,6 +54,20 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $match->addParticipant($this->getReference("michel"));
         $manager->persist($match);
 
+        $laserGame = new Sortie();
+        $laserGame->setNom("laser-game");
+        $laserGame->setDateHeureDebut(new \DateTimeImmutable('2023-07-12 19:00:00'));
+        $laserGame->setDuree(new \DateTimeImmutable('01:30:00'));
+        $laserGame->setDateLimiteInscription(new \DateTimeImmutable('2023-06-11 19:00:00'));
+        $laserGame->setOrganisateur($this->getReference("thomas"));
+        $laserGame->setNbInscriptionsMax(10);
+        $laserGame->setInfosSortie("Partie de laser game");
+        $laserGame->setCampus($this->getReference("campus-quimper"));
+        $laserGame->setEtat($this->getReference("ouverte"));
+        $laserGame->setLieu($this->getReference("laserGame-quimper"));
+        $laserGame->addParticipant($this->getReference("michel"));
+        $manager->persist($laserGame);
+
         $manager->flush();
     }
 

@@ -1,13 +1,33 @@
 {% block body %}
-<div>
-    <ul>
+    <table>
+        <thead>
+        <tr>
+            <th>Nom de la sortie</th>
+            <th>Date de la sortie</th>
+            <th>Cloture de la sortie</th>
+            <th>Inscrits/places</th>
+            <th>Etat</th>
+            <th>Inscrit</th>
+            <th>Organsateur</th>
+            <th>Actions</th>
+
+        </tr>
+        </thead>
         {% if sorties %}
-            {% for s in sorties %}
-                <li>
-                    {{ s.nom }}
-                </li>
-            {% endfor %}
+        {% for s in sorties %}
+        <tbody>
+        <tr>
+            <td>{{ s.nom }}</td>
+            <td>{{ s.dateHeureDebut|date("d/m/Y") }}</td>
+            <td>{{ s.dateLimiteInscription|date("d/m/Y") }}</td>
+            <td>nombre inscrit / {{ s.nbInscriptionsMax }}</td>
+            <td>{{ s.dateHeureDebut }}</td>
+            <td>{{ s.dateHeureDebut }}</td>
+            <td>{{ s.dateHeureDebut }}</td>
+            <td>{{ s.dateHeureDebut }}</td>
+        </tr>
+        </tbody>
+        {% endfor %}
         {% endif %}
-    </ul>
-</div>
+    </table>
 {% endblock %}

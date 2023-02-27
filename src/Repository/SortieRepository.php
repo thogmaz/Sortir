@@ -44,9 +44,10 @@ class SortieRepository extends ServiceEntityRepository
     {
         $query = $this->createQueryBuilder('s');
 
-        if ($search->getCampus()) {
+
+        if ($search->campus) {
             $query = $query->andWhere('s.campus = :campus')
-                ->setParameter('campus', $search->getCampus());
+                ->setParameter('campus', $search->campus);
         }
 
         if (!empty($search->nom)) {
