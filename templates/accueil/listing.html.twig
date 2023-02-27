@@ -1,10 +1,10 @@
 {% block body %}
 <div>
     <ul>
-        {% if data %}
-            {% for d in data %}
+        {% if sorties %}
+            {% for s in sorties %}
                 <li>
-                    {{ d.nom }}
+                    {{ s.nom }}
                 </li>
             {% endfor %}
         {% endif %}
