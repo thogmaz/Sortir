@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Accueil</h1>
     <p>
-        {% if (app.user) %}
+    {% if (app.user) %}
 
-    <div>Hello {{ app.user.pseudo }} !</div>
+        <div>Hello {{ app.user.pseudo }} !</div>
     {% endif %}
     </p>
     <div>
@@ -16,7 +16,7 @@
 
     <div>
         <ul>
-           {% include 'accueil/listing.html.twig' %}
+            {% include 'accueil/listing.html.twig' %}
         </ul>
     </div>
 {% endblock %}
