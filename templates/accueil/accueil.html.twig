@@ -10,20 +10,13 @@
     <div>Hello {{ app.user.pseudo }} !</div>
     {% endif %}
     </p>
-    {{ form_start(search) }}
-    {{ form_widget(search) }}
+    <div>
+        {% include 'accueil/form.html.twig' %}
+    </div>
 
-    <button type="submit" class="btn">Rechercher</button>
-    {{ form_end(search) }}
     <div>
         <ul>
-            {% if data %}
-                {% for d in data %}
-            <li>
-                {{ d.nom }}
-            </li>
-            {% endfor %}
-            {% endif %}
+           {% include 'accueil/listing.html.twig' with {'data': data} %}
         </ul>
     </div>
 {% endblock %}

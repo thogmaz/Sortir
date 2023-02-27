@@ -1,0 +1,13 @@
+{% block body %}
+<div>
+    <ul>
+        {% if data %}
+            {% for d in data %}
+                <li>
+                    {{ d.nom }}
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}
