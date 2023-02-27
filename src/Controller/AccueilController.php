@@ -22,7 +22,7 @@ class AccueilController extends AbstractController
         $data->campus = $this->getUser()->getCampus();
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
-        $sorties = $sortieRepository->findByFilter($data);
+        $sorties = $sortieRepository->findByFilter($data, $this->getUser());
 
         return $this->render('accueil/accueil.html.twig', [
             'sorties' => $sorties,

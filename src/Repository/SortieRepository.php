@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Participant;
 use App\Entity\Sortie;
 use App\Service\SearchData;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -40,7 +41,7 @@ class SortieRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByFilter(SearchData $search): array
+    public function findByFilter(SearchData $search, Participant $user): array
     {
         $query = $this->createQueryBuilder('s');
 
@@ -53,15 +54,21 @@ class SortieRepository extends ServiceEntityRepository
         if (!empty($search->nom)) {
             $query = $query->andWhere('s.nom LIKE :nom')
                 ->setParameter('nom', "%{$search->nom}%");
-
         }
 
         if (!empty($search->dateDebutRecherche) && ($search->dateFinRecherche)) {
             $query = $query->andWhere('s.dateHeureDebut BETWEEN :dateDebutRecherche AND :dateFinRecherche')
                 ->setParameter('dateDebutRecherche',  $search->dateDebutRecherche)
                 ->setParameter('dateFinRecherche',  $search->dateFinRecherche);
-
         }
+
+        if($search->option1){
+            $query = $query
+                ->andWhere('s.organisateur = :organisateur')
+                ->setParameter('organisateur', $user);
+        }
+
+
         return $query->getQuery()->getResult();
     }
 }
