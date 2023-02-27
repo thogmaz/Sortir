@@ -40,6 +40,20 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $fete->setLieu($this->getReference("bar-nantes"));
         $manager->persist($fete);
 
+        $match = new Sortie();
+        $match->setNom("match");
+        $match->setDateHeureDebut(new \DateTimeImmutable('2023-03-12 16:00:00'));
+        $match->setDuree(new \DateTimeImmutable('03:30:00'));
+        $match->setDateLimiteInscription(new \DateTimeImmutable('2023-03-11 16:00:00'));
+        $match->setOrganisateur($this->getReference("thomas"));
+        $match->setNbInscriptionsMax(35);
+        $match->setInfosSortie("match de foot");
+        $match->setCampus($this->getReference("campus-quimper"));
+        $match->setEtat($this->getReference("crée"));
+        $match->setLieu($this->getReference("terrain-quimper"));
+        $match->addParticipant($this->getReference("michel"));
+        $manager->persist($match);
+
         $manager->flush();
     }
 

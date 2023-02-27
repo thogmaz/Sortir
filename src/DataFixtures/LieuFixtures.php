@@ -36,6 +36,15 @@ class LieuFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($barNantes);
         $this->addReference("bar-nantes", $barNantes);
 
+        $terrainQuimper = new Lieu();
+        $terrainQuimper->setNom("terrain-quimper");
+        $terrainQuimper->setRue("rue du terrain");
+        $terrainQuimper->setLatitude(28.117266);
+        $terrainQuimper->setLongitude(-5.6777926);
+        $terrainQuimper->setVille($this->getReference("ville-quimper"));
+        $manager->persist($terrainQuimper);
+        $this->addReference("terrain-quimper", $terrainQuimper);
+
         $manager->flush();
     }
 }
