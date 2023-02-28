@@ -22,7 +22,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $balade->setNbInscriptionsMax(20);
         $balade->setInfosSortie("balade au parc");
         $balade->setCampus($this->getReference("campus-rennes"));
-        $balade->setEtat($this->getReference("crée"));
+        $balade->setEtat($this->getReference("passée"));
         $balade->setLieu($this->getReference("parc-rennes"));
         $balade->addParticipant($this->getReference("michel"));
         $manager->persist($balade);

@@ -44,6 +44,10 @@ class SortieRepository extends ServiceEntityRepository
     public function findByFilter(SearchData $search, Participant $user): array
     {
         $query = $this->createQueryBuilder('s');
+        $dateOneMonthAgo = (new \DateTime())->modify('-1 month')->format('Y-m-d H:i:s');
+
+        $query = $query->andWhere('(s.dateHeureDebut) > :dateOneMonthAgo')
+            ->setParameter('dateOneMonthAgo', $dateOneMonthAgo);
 
 
         if ($search->campus) {
@@ -58,26 +62,32 @@ class SortieRepository extends ServiceEntityRepository
 
         if (!empty($search->dateDebutRecherche) && ($search->dateFinRecherche)) {
             $query = $query->andWhere('s.dateHeureDebut BETWEEN :dateDebutRecherche AND :dateFinRecherche')
-                ->setParameter('dateDebutRecherche',  $search->dateDebutRecherche)
-                ->setParameter('dateFinRecherche',  $search->dateFinRecherche);
+                ->setParameter('dateDebutRecherche', $search->dateDebutRecherche)
+                ->setParameter('dateFinRecherche', $search->dateFinRecherche);
         }
 
-        if($search->option1){
+        if ($search->option1) {
             $query = $query
                 ->andWhere('s.organisateur = :organisateur')
                 ->setParameter('organisateur', $user);
         }
 
-        if($search->option2){
+        if ($search->option2) {
             $query = $query
                 ->andWhere(':participant MEMBER OF s.participants')
                 ->setParameter('participant', $user);
         }
 
-        if($search->option3){
+        if ($search->option3) {
             $query = $query
                 ->andWhere(':participant NOT MEMBER s.participants')
                 ->setParameter('participant', $user);
+        }
+
+        if ($search->option4) {
+            $query = $query
+                ->andWhere('s.etat = :etat')
+                ->setParameter('etat', 'passée'  );
         }
 
         return $query->getQuery()->getResult();
