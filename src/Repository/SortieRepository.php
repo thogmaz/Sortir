@@ -43,7 +43,9 @@ class SortieRepository extends ServiceEntityRepository
 
     public function findByFilter(SearchData $search, Participant $user): array
     {
-        $query = $this->createQueryBuilder('s');
+        $query = $this->createQueryBuilder('s')
+        ->join('s.etat', 'e')
+        ->addSelect('e');
         $dateOneMonthAgo = (new \DateTime())->modify('-1 month')->format('Y-m-d H:i:s');
 
         $query = $query->andWhere('(s.dateHeureDebut) > :dateOneMonthAgo')
@@ -80,14 +82,14 @@ class SortieRepository extends ServiceEntityRepository
 
         if ($search->option3) {
             $query = $query
-                ->andWhere(':participant NOT MEMBER s.participants')
+                ->andWhere(':participant NOT MEMBER OF s.participants')
                 ->setParameter('participant', $user);
         }
 
         if ($search->option4) {
             $query = $query
-                ->andWhere('s.etat = :etat')
-                ->setParameter('etat', 'passée'  );
+                ->andWhere('e.libelle = :libelle')
+                ->setParameter('libelle', 'passée');
         }
 
         return $query->getQuery()->getResult();

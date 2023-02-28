@@ -24,6 +24,7 @@ class AccueilController extends AbstractController
         $form->handleRequest($request);
         $sorties = $sortieRepository->findByFilter($data, $this->getUser());
 
+
         return $this->render('accueil/accueil.html.twig', [
             'sorties' => $sorties,
             'search'=>$form->createView()

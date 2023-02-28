@@ -21,9 +21,9 @@
             <td>{{ s.nom }}</td>
             <td>{{ s.dateHeureDebut|date("d/m/Y") }}</td>
             <td>{{ s.dateLimiteInscription|date("d/m/Y") }}</td>
-            <td>nombre inscrit / {{ s.nbInscriptionsMax }}</td>
+            <td> {{ s.participants.count}} / {{ s.nbInscriptionsMax }}</td>
             <td>{{ s.etat }}</td>
-            <td>X</td>
+            <td>{{ app.user in s.participants ? 'x': '' }}</td>
             <td>{{ s.organisateur }}</td>
             <td>TODO</td>
         </tr>

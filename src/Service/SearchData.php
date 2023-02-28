@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Etat;
 use App\Entity\Sortie;
 use App\Entity\Campus;
 use Doctrine\DBAL\Types\Types;
