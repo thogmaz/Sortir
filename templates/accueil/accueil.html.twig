@@ -1,22 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}{{ parent() }} | Accueil{% endblock %}
 
 {% block body %}
-    <h1>Accueil</h1>
-    <p>
-    {% if (app.user) %}
-
-        <div>Hello {{ app.user.pseudo }} !</div>
-    {% endif %}
-    </p>
     <div>
-        {% include 'accueil/form.html.twig' %}
+        <h1>Accueil</h1>
     </div>
+    <div class="container">
+        <div class="form_accueil">
+            {% include 'accueil/form.html.twig' %}
+        </div>
 
-    <div>
-        <ul>
+        <div class="listing">
             {% include 'accueil/listing.html.twig' %}
-        </ul>
+        </div>
     </div>
 {% endblock %}

@@ -1,0 +1,15 @@
+<nav class="header-nav">
+    <a href="{{ path('app_accueil') }}" title="accueil">Accueil</a>
+
+    {% if (app.user) %}
+        {% if is_granted("ROLE_ADMIN") %}
+            <a href="#" title="ville">Ville</a>
+            <a href="#" title="campus">Campus</a>
+        {% endif %}
+        <a href="{{ path('app_profil') }}" title="profil">Profil</a>
+        <a href="{{ path('app_logout') }}" title="logout">Logout</a>
+        <div class="pseudo">Hello {{ app.user.pseudo }} !</div>
+    {% else %}
+        <a href="{{ path('app_register') }}" title="register">Register</a>
+    {% endif %}
+</nav>
