@@ -28,6 +28,12 @@ class VilleFixtures extends Fixture
         $manager->persist($quimper);
         $this->addReference('ville-quimper', $quimper);
 
+        $niort = new Ville();
+        $niort->setNom("Niort");
+        $niort->setCodePostal(79000);
+        $manager->persist($niort);
+        $this->addReference('ville-niort', $niort);
+
         $manager->flush();
     }
 }

@@ -54,6 +54,25 @@ class LieuFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($laserGameQuimper);
         $this->addReference("laserGame-quimper", $laserGameQuimper);
 
+        $escaladeRennes = new Lieu();
+        $escaladeRennes->setNom("escalade-rennes");
+        $escaladeRennes->setRue("rue du mur d'escalade");
+        $escaladeRennes->setLatitude(47.117266);
+        $escaladeRennes->setLongitude(-3.6777926);
+        $escaladeRennes->setVille($this->getReference("ville-rennes"));
+        $manager->persist($escaladeRennes);
+        $this->addReference("escalade-rennes", $escaladeRennes);
+
+        $piscineNiort = new Lieu();
+        $piscineNiort->setNom("piscine-niort");
+        $piscineNiort->setRue("rue de la piscine");
+        $piscineNiort->setLatitude(88.117266);
+        $piscineNiort->setLongitude(-17.6777926);
+        $piscineNiort->setVille($this->getReference("ville-niort"));
+        $manager->persist($piscineNiort);
+        $this->addReference("piscine-niort", $piscineNiort);
+
+
         $manager->flush();
     }
 }

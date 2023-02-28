@@ -69,6 +69,34 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $laserGame->addParticipant($this->getReference("michel"));
         $manager->persist($laserGame);
 
+        $escalade = new Sortie();
+        $escalade->setNom("escalade");
+        $escalade->setDateHeureDebut(new \DateTimeImmutable('2022-12-09 14:00:00'));
+        $escalade->setDuree(new \DateTimeImmutable('02:15:00'));
+        $escalade->setDateLimiteInscription(new \DateTimeImmutable('2023-06-11 14:00:00'));
+        $escalade->setOrganisateur($this->getReference("virginie"));
+        $escalade->setNbInscriptionsMax(6);
+        $escalade->setInfosSortie("Après-midi escalade");
+        $escalade->setCampus($this->getReference("campus-rennes"));
+        $escalade->setEtat($this->getReference("passée"));
+        $escalade->setLieu($this->getReference("escalade-rennes"));
+        $escalade->addParticipant($this->getReference("Amandine"));
+        $escalade->addParticipant($this->getReference("Adrien"));
+        $manager->persist($escalade);
+
+        $piscine = new Sortie();
+        $piscine->setNom("piscine");
+        $piscine->setDateHeureDebut(new \DateTimeImmutable('2023-02-25 20:00:00'));
+        $piscine->setDuree(new \DateTimeImmutable('03:00:00'));
+        $piscine->setDateLimiteInscription(new \DateTimeImmutable('2023-02-24 20:00:00'));
+        $piscine->setOrganisateur($this->getReference("Anna"));
+        $piscine->setNbInscriptionsMax(8);
+        $piscine->setInfosSortie("Sortie à la piscine municipale");
+        $piscine->setCampus($this->getReference("campus-niort"));
+        $piscine->setEtat($this->getReference("annulée"));
+        $piscine->setLieu($this->getReference("piscine-niort"));
+        $manager->persist($piscine);
+
         $manager->flush();
     }
 

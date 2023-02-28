@@ -25,6 +25,11 @@ class CampusFixtures extends Fixture
         $manager->persist($campusQuimper);
         $this->addReference("campus-quimper", $campusQuimper);
 
+        $campusNiort = new Campus();
+        $campusNiort->setNom("Niort");
+        $manager->persist($campusNiort);
+        $this->addReference("campus-niort", $campusNiort);
+
         $manager->flush();
     }
 
