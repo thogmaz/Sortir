@@ -3,12 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Campus;
-use App\Entity\Sortie;
 use App\Service\SearchData;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,6 +17,12 @@ class SearchForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('campus', EntityType::class, [
+                'class' => Campus::class,
+                'choice_label' => 'nom',
+                'required' => false,
+            ])
+
             ->add('nom', TextType::class, [
                 'required' => false
             ])
@@ -32,11 +36,7 @@ class SearchForm extends AbstractType
                 'widget' => 'single_text',
                 'required' => false
             ])
-            ->add('campus', EntityType::class, [
-                'class' => Campus::class,
-                'choice_label' => 'nom',
-                'required' => false,
-            ])
+
             ->add('option1', CheckboxType::class, [
                 'label' => 'Sorties dont je suis organisateur',
                 'required' => false,
