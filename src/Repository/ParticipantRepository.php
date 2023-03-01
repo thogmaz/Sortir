@@ -56,6 +56,20 @@ class ParticipantRepository extends ServiceEntityRepository implements PasswordU
         $this->save($user, true);
     }
 
+    public function loadUserByIdentifier(string $usernameOrEmail): ?Participant
+    {
+        $entityManager = $this->getEntityManager();
+
+        return $entityManager->createQuery(
+            'SELECT u
+                FROM App\Entity\Participant u
+                WHERE u.pseudo = :query
+                OR u.email = :query'
+        )
+            ->setParameter('query', $usernameOrEmail)
+            ->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return Participant[] Returns an array of Participant objects
 //     */
