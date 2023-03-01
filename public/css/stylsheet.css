@@ -9,8 +9,15 @@
     display: flex;
     flex-direction: column;
     margin-right: 40px;
+
 }
 
+.sortie_form{
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+    max-width: 20%;
+}
 
 .profil{
     display: flex;

@@ -1,35 +1,53 @@
 {% block body %}
     <div>
-    <table>
-        <thead>
-        <tr>
-            <th>Nom de la sortie</th>
-            <th>Date de la sortie</th>
-            <th>Cloture de la sortie</th>
-            <th>Inscrits/places</th>
-            <th>Etat</th>
-            <th>Inscrit</th>
-            <th>Organisateur</th>
-            <th>Actions</th>
+        <table>
+            <thead>
+            <tr>
+                <th>Nom de la sortie</th>
+                <th>Date de la sortie</th>
+                <th>Cloture de la sortie</th>
+                <th>Inscrits/places</th>
+                <th>Etat</th>
+                <th>Inscrit</th>
+                <th>Organisateur</th>
+                <th>Actions</th>
 
-        </tr>
-        </thead>
-        {% if sorties %}
-        {% for s in sorties %}
-        <tbody>
-        <tr>
-            <td>{{ s.nom }}</td>
-            <td>{{ s.dateHeureDebut|date("d/m/Y") }}</td>
-            <td>{{ s.dateLimiteInscription|date("d/m/Y") }}</td>
-            <td> {{ s.participants.count}} / {{ s.nbInscriptionsMax }}</td>
-            <td>{{ s.etat }}</td>
-            <td>{{ app.user in s.participants ? 'x': '' }}</td>
-            <td>{{ s.organisateur }}</td>
-            <td>TODO</td>
-        </tr>
-        </tbody>
-        {% endfor %}
-        {% endif %}
-    </table>
+            </tr>
+            </thead>
+            {% if sorties %}
+                {% for s in sorties %}
+                    <tbody>
+                    <tr>
+                        <td>{{ s.nom }}</td>
+                        <td>{{ s.dateHeureDebut|date("d/m/Y") }}</td>
+                        <td>{{ s.dateLimiteInscription|date("d/m/Y") }}</td>
+                        <td> {{ s.participants.count }} / {{ s.nbInscriptionsMax }}</td>
+                        <td>{{ s.etat }}</td>
+                        <td>{{ app.user in s.participants ? 'x': '' }}</td>
+                        <td>{{ s.organisateur }}</td>
+                        <td>
+                            {% if s.etat == 'ouverte' %}
+                                <a href="#" title="afficher">Afficher</a><br>
+                                {% if app.user in s.participants %}
+                                    <a href="#" title="se désister">Se désister</a><br>
+                                {% else %}
+                                    <a href="#" title="s'inscrire">S'inscrire</a>
+                                {% endif %}
+                                {% if app.user == s.organisateur %}
+                                    <a href="#" title="annuler">Annuler</a>
+                                {% endif %}
+                            {% endif %}
+
+                            {% if s.etat == 'crée' and app.user == s.organisateur %}
+                                <a href="#" title="publier">Publier</a>
+                            {% endif %}
+
+
+                        </td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            {% endif %}
+        </table>
     </div>
 {% endblock %}
