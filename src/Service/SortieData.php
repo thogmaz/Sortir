@@ -3,7 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Campus;
-use phpDocumentor\Reflection\PseudoTypes\IntegerRange;
+use App\Entity\Lieu;
 
 class SortieData
 {
@@ -20,4 +20,8 @@ class SortieData
     public ?string $infosSortie;
 
     public ?Campus $campus = null;
+
+    public ?Lieu $lieu = null;
+
+
 }
