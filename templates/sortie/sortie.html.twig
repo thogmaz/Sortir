@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="sortie_form">
-        {{ form_start(sortieData) }}
+    <h1>Créer une sortie</h1>
+    <div id="container-sortie-form">
+        {{ form_start(sortieData, {'attr': {'id': 'form-sortie'}}) }}
 
-        <div class="sortie-colonne-1">
+        <div id="sortie-colonne-1">
             <label for="nom">Nom</label>
             {{ form_widget(sortieData.nom) }}
 
@@ -22,24 +23,23 @@
 
             <label for="infoSortie">Infos sortie</label>
             {{ form_widget(sortieData.infosSortie) }}
+
         </div>
 
-        <div class="sortie-colonne-2">
-            <p>Campus : {{ app.user.campus }} </p>
+        <div id="sortie-colonne-2">
+            <p><span>Campus : </span>{{ app.user.campus }} </p>
 
             <label for="lieu">Lieu</label>
             {{ form_widget(sortieData.lieu) }}
 
-
-            <div>
-
-                <input method="POST" name="save" type="submit" class="btn" value="save">
-                <input method="POST" name="publish" type="submit" class="btn" value="publish">
-                <button type="reset" class="btn">Annuler</button>
-            </div>
             {{ form_end(sortieData) }}
-
-
         </div>
+        <div id="sortie-btns">
+            <input method="POST" name="save" type="submit" class="btn" value="Enregistrer">
+            <input method="POST" name="publish" type="submit" class="btn" value="publier">
+            <button type="reset" class="btn">Annuler</button>
+        </div>
+
+
     </div>
 {% endblock %}

@@ -22,13 +22,12 @@ class SortieController extends AbstractController
     {
         $data = new Sortie();
         $data->setCampus($this->getUser()->getCampus());
+        $data->setOrganisateur($this->getUser());
+
         $form = $this->createForm(SortieFormType::class, $data);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-
-
             if ($request->request->get('save')) {
                 $etat = $etatRepository->findOneBy(['libelle'=>'crée']);
             }
@@ -37,8 +36,6 @@ class SortieController extends AbstractController
             }
 
             $data->setEtat($etat);
-
-            $data->setOrganisateur($this->getUser());
 
             $entityManager->persist($data);
             $entityManager->flush();

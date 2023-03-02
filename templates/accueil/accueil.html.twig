@@ -5,9 +5,10 @@
 {% block body %}
     <div>
         <h1>Accueil</h1>
-        <p>Date du jour : {{ "now"|date('d/m/Y') }}</p>
-        <p>Participant : {{ app.user.nom }} {{ app.user.prenom }}</p>
-
+        <div id="accueil-date-user">
+            <p>Date du jour : {{ "now"|date('d/m/Y') }}</p>
+            <p>Participant : {{ app.user.nom }} {{ app.user.prenom }}</p>
+        </div>
     </div>
     <div class="container">
         <div class="form_accueil">
@@ -16,7 +17,8 @@
 
         <div class="listing">
             {% include 'accueil/listing.html.twig' %}<br>
-            <a href="{{ path('app_sortie')  }}"><input class= "btn" type="button" title="creer-sortie" value="Créer une sortie"></a>
+            <a href="{{ path('app_sortie') }}"><input class="btn" type="button" title="creer-sortie"
+                                                      value="Créer une sortie"></a>
         </div>
     </div>
 {% endblock %}

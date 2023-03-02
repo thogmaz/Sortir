@@ -2,34 +2,32 @@
     max-width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
 }
 
 #search_form {
     display: flex;
     flex-direction: column;
     margin-right: 40px;
-
 }
 
-.sortie_form{
-    display: flex;
-    flex-direction: column;
-    margin-right: 40px;
-    max-width: 20%;
+#accueil-date-user {
+    text-align: right;
+    margin-right: 50px;
+    font-weight: bold;
 }
 
-.profil{
+
+#container-profil {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#profil_form{
+#profil_form {
     width: 20%;
 }
 
-.login{
+#container-login {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,7 +72,7 @@ header nav a:hover {
 }
 
 
-.pseudo {
+#nav-pseudo {
     color: #ffd023;
     font-weight: bold;
     display: inline;
@@ -106,28 +104,66 @@ table {
     background-color: white;
 }
 
-th, td{
+th, td {
     width: 200px;
 }
 
-.sortie_form{
+#container-sortie-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#sortie-colonne-1 {
+    display: inline-block;
+    vertical-align: top;
+    width: 45%;
+    margin-bottom: 30px;
+    margin-right: 50px;
+}
+
+#sortie-colonne-2 {
+    display: inline-block;
+    vertical-align: top;
+    width: 45%;
+    margin-bottom: 10%;
+}
+
+#sortie-btns {
+    display: inline-block;
+    vertical-align: top;
+    width: 90%;
+    margin-top: 30px;
+    text-align: center;
+}
+
+#container-reset-password {
     display: flex;
     flex-direction: column;
-    border: solid 4px red;
     max-width: 100%;
     align-items: center;
 }
 
-.sortie-colonne-1{
-    display: inline-block;
-    flex-direction: column;
-align-items: flex-start ;
-    border: solid 4px black;
+#reset-password {
+    max-width: 30%;
+    margin-top: 20px;
 }
 
-.sortie-colonne-2{
-    display: inline-block;
-    flex-direction: column;
-    align-items: flex-end ;
-    border: solid 4px black;
+#reset-password-annuler {
+    margin-left: 20px;
+}
+
+label, span{
+    font-weight: bold;
+}
+
+input, textarea, select, button{
+    margin-bottom:15px;
+}
+
+#form-sortie{
+    width:50%;
 }

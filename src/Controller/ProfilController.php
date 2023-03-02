@@ -28,7 +28,7 @@ class ProfilController extends AbstractController
             $entityManager->flush();
 
 
-            return $this->redirectToRoute('profil_success');
+            return $this->redirectToRoute('app_accueil');
         }
 
         return $this->renderForm('profil/profil.html.twig', [

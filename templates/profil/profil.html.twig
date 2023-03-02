@@ -3,15 +3,16 @@
 {% block title %}{{ parent() }} | Mon Profil{% endblock %}
 
     {% block body %}
-<div class="profil">
-        <h1>Mon Profil</h1>
-        <div id="profil_form">
-            {{ form_start(profilForm) }}
-            {{ form_widget(profilForm) }}
+        <div id="container-profil">
+            <h1>Mon Profil</h1>
+            <div id="profil_form">
+                {{ form_start(profilForm) }}
+                {{ form_widget(profilForm) }}
 
-    <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn">Enregistrer</button>
+                <button type="reset" class="btn">Annuler</button>
+            </div>
+            {{ form_end(profilForm) }}
         </div>
-    {{ form_end(profilForm) }}
-</div>
 
-{% endblock %}
+    {% endblock %}
