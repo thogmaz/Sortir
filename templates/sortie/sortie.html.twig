@@ -31,10 +31,10 @@
             {{ form_widget(sortieData.lieu) }}
 
             <label for="rue">Rue</label>
-            {% if sorties %}
+            {#{% if sorties %}
                 {% set lieu = sorties[0].lieu %}
-                <p>{{ lieu.rue }}{{ lieu.ville.codePostal }} {{ lieu.ville.nom }}</p>
-            {% endif %}
+                 <p>{{ lieu.rue }}{{ lieu.ville.codePostal }} {{ lieu.ville.nom }}</p>
+            {% endif %} #}
 
             <button type="button" class="btn">Enregistrer</button>
             <button type="submit" class="btn">Publier</button>

@@ -19,7 +19,7 @@ class SortieController extends AbstractController
         $data->campus = $this->getUser()->getCampus();
         $form = $this->createForm(SortieFormType::class, $data);
         $form->handleRequest($request);
-        $sorties = $sortieRepository->findOneBy();
+        $sorties = $sortieRepository->findAll();
 
         return $this->render('sortie/sortie.html.twig', [
             'sorties' => $sorties,
