@@ -109,3 +109,25 @@ table {
 th, td{
     width: 200px;
 }
+
+.sortie_form{
+    display: flex;
+    flex-direction: column;
+    border: solid 4px red;
+    max-width: 100%;
+    align-items: center;
+}
+
+.sortie-colonne-1{
+    display: inline-block;
+    flex-direction: column;
+align-items: flex-start ;
+    border: solid 4px black;
+}
+
+.sortie-colonne-2{
+    display: inline-block;
+    flex-direction: column;
+    align-items: flex-end ;
+    border: solid 4px black;
+}

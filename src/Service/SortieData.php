@@ -23,5 +23,12 @@ class SortieData
 
     public ?Lieu $lieu = null;
 
+    public ?Lieu $rue = null;
+
+    public ?Lieu $codePostal = null;
+
+    public ?Lieu $latitude = null;
+
+    public ?Lieu $longitude = null;
 
 }

@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Form\SearchForm;
 use App\Form\SortieFormType;
 use App\Repository\SortieRepository;
-use App\Service\SearchData;
 use App\Service\SortieData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,8 +19,10 @@ class SortieController extends AbstractController
         $data->campus = $this->getUser()->getCampus();
         $form = $this->createForm(SortieFormType::class, $data);
         $form->handleRequest($request);
+        $sorties = $sortieRepository->findOneBy();
 
         return $this->render('sortie/sortie.html.twig', [
+            'sorties' => $sorties,
             'sortieData'=>$form->createView()
         ]);
     }

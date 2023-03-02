@@ -1,11 +1,46 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="sortie_form">
-    {{ form_start(sortieData) }}
-    {{ form_widget(sortieData) }}
+    <div class="sortie_form">
+        {{ form_start(sortieData) }}
 
-    <button type="submit" class="btn">Rechercher</button>
-    {{ form_end(sortieData) }}
-</div>
+        <div class="sortie-colonne-1">
+            <label for="nom">Nom</label>
+            {{ form_widget(sortieData.nom) }}
+
+            <label for="dateHeureDebut">Date heure début</label>
+            {{ form_widget(sortieData.dateHeureDebut) }}
+
+            <label for="dateLimiteInscription">Date limite inscription</label>
+            {{ form_widget(sortieData.dateLimiteInscription) }}
+
+            <label for="nbInscriptionMax">Nombre d'inscription max</label>
+            {{ form_widget(sortieData.nbInscriptionsMax) }}
+
+            <label for="duree">Durée en minutes</label>
+            {{ form_widget(sortieData.duree) }}
+
+            <label for="infoSortie">Infos sortie</label>
+            {{ form_widget(sortieData.infosSortie) }}
+        </div>
+
+        <div class="sortie-colonne-2">
+            <p>Campus : {{ app.user.campus }} </p>
+
+            <label for="lieu">Lieu</label>
+            {{ form_widget(sortieData.lieu) }}
+
+            <label for="rue">Rue</label>
+            {% if sorties %}
+                {% set lieu = sorties[0].lieu %}
+                <p>{{ lieu.rue }}{{ lieu.ville.codePostal }} {{ lieu.ville.nom }}</p>
+            {% endif %}
+
+            <button type="button" class="btn">Enregistrer</button>
+            <button type="submit" class="btn">Publier</button>
+            <button type="reset" class="btn">Annuler</button>
+            {{ form_end(sortieData) }}
+
+        </div>
+    </div>
 {% endblock %}

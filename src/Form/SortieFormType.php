@@ -45,10 +45,6 @@ class SortieFormType extends AbstractType
             ->add('infosSortie', TextareaType::class, [
                 'required' => false
             ])
-            ->add('campus', EntityType::class, [
-                'class' => Campus::class,
-                'required' => true,
-            ])
 
         ->add('lieu', EntityType::class, [
         'class' => Lieu::class,
