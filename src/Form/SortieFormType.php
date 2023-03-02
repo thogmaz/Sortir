@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Campus;
 use App\Entity\Lieu;
+use App\Entity\Sortie;
 use App\Service\SortieData;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -61,7 +62,7 @@ class SortieFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => SortieData::class,
+            'data_class' => Sortie::class,
         ]);
     }
 }
