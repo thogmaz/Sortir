@@ -31,14 +31,15 @@
 
             <label for="lieu">Lieu</label>
             {{ form_widget(sortieData.lieu) }}
-
+        </div>
+            <div id="sortie-btns">
+                <input method="POST" name="save" type="submit" class="btn" value="Enregistrer">
+                <input method="POST" name="publish" type="submit" class="btn" value="Publier">
+                <button type="reset" class="btn">Annuler</button>
+            </div>
             {{ form_end(sortieData) }}
-        </div>
-        <div id="sortie-btns">
-            <input method="POST" name="save" type="submit" class="btn" value="Enregistrer">
-            <input method="POST" name="publish" type="submit" class="btn" value="publier">
-            <button type="reset" class="btn">Annuler</button>
-        </div>
+
+
 
 
     </div>
