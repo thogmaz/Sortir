@@ -39,13 +39,35 @@ class AccueilController extends AbstractController
 
         //compare le nb d'inscrits avec le nb max de participants possible
         if (($sortie->getParticipants()->count()) == ($sortie->getNbInscriptionsMax())) {
-            $this->addFlash('error', "Le nombre de participants maximum est atteint, vous ne pouvez pas vous inscrire");
+            $this->addFlash(
+                'error', "Le nombre de participants maximum est atteint, vous ne pouvez pas vous inscrire");
         } else {
             //récupère le participant
             $participant = $this->getUser();
             $sortie->addParticipant($participant);
             $entityManager->flush();
             $this->addFlash('success', "Vous êtes inscrit !");
+        }
+        return $this->redirectToRoute('app_accueil');
+    }
+
+    #[Route('/unsubscribe/{id}', name: 'app_unsubscribe')]
+    public function removeSubscription(SortieRepository $sortieRepository, ParticipantRepository $participantRepository, EntityManagerInterface $entityManager, int $id): Response
+    {
+        //récupère la sortie et la date du jour
+        $sortie = $sortieRepository->find($id);
+        $date = new \DateTime('now');
+
+        //vérifie que la sortie n'a pas débuté
+        if ($date >= ($sortie->getDateHeureDebut())) {
+            $this->addFlash('error', "Vous ne pouvez pas vous désinscrire : la sortie a débuté");
+        } else {
+
+            //récupère le participant
+            $participant = $this->getUser();
+            $sortie->removeParticipant($participant);
+            $entityManager->flush();
+            $this->addFlash('success', "Vous êtes désinscrit !");
         }
         return $this->redirectToRoute('app_accueil');
     }

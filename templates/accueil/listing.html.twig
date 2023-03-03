@@ -45,7 +45,7 @@
                             {% if s.etat == 'ouverte' %}
                                 <a href="#" title="afficher">Afficher</a><br>
                                 {% if app.user in s.participants %}
-                                    <a href="#" title="se désister">Se désister</a><br>
+                                    <a href="{{ path('app_unsubscribe', {'id': s.id}) }}" title="se désister">Se désister</a><br>
                                 {% else %}
                                     <a href="{{ path('app_subscription', {'id': s.id}) }}"
                                        title="s'inscrire">S'inscrire</a>
