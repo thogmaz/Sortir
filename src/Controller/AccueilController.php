@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\SearchForm;
+use App\Repository\EtatRepository;
 use App\Repository\ParticipantRepository;
 use App\Repository\SortieRepository;
 use App\Service\SearchData;
@@ -48,7 +49,7 @@ class AccueilController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', "Vous êtes inscrit !");
         }
-        return $this->redirectToRoute('app_accueil');
+        return $return = $this->redirectToRoute('app_accueil');;
     }
 
     #[Route('/unsubscribe/{id}', name: 'app_unsubscribe')]
@@ -69,6 +70,20 @@ class AccueilController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', "Vous êtes désinscrit !");
         }
+        return $this->redirectToRoute('app_accueil');
+    }
+
+    #[Route('/publish/{id}', name: 'app_publish')]
+    public function publish(Request $request, EtatRepository $etatRepository, SortieRepository $sortieRepository, ParticipantRepository $participantRepository, EntityManagerInterface $entityManager, int $id): Response
+    {
+        //récupère la sortie
+        $sortie = $sortieRepository->find($id);
+
+        $sortie->setEtat($etatRepository->findOneBy(['libelle' => 'ouverte']));
+
+        $entityManager->flush();
+        $this->addFlash('success', "La sortie est publiée");
+
         return $this->redirectToRoute('app_accueil');
     }
 }

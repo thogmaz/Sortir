@@ -9,6 +9,11 @@
                 {{ form_start(profilForm) }}
                 {{ form_widget(profilForm) }}
 
+                <div>
+
+                    <a href="{{ path('app_forgot_password_request') }}"><input type="button" class="btn-warning" value="Réinitialiser mot de passe"></a>
+                </div>
+
                 <button type="submit" class="btn">Enregistrer</button>
                 <button type="reset" class="btn">Annuler</button>
             </div>

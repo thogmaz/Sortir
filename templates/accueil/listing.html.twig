@@ -51,12 +51,13 @@
                                        title="s'inscrire">S'inscrire</a>
                                 {% endif %}
                                 {% if app.user == s.organisateur %}
-                                    <a href="#" title="annuler">Annuler</a>
+                                    <a href="{{ path('app_annule_sortie', {'id': s.id}) }}" title="annuler">Annuler</a>
                                 {% endif %}
                             {% endif %}
 
                             {% if s.etat == 'crée' and app.user == s.organisateur %}
-                                <a href="#" title="publier">Publier</a>
+                                <a href="{{ path('app_publish', {'id': s.id}) }}" title="publier">Publier</a>
+                                <a href="{{ path('app_annule_sortie', {'id': s.id}) }}" title="annuler">Annuler</a>
                             {% endif %}
 
 

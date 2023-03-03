@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Annulation d'une sortie</h1>
+    <div class="container">
+        <div>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        {{ form_start(annulationData) }}
+
+        <p><span>Nom de la sortie : </span>{{ sortie.nom }} </p>
+        <p><span>Date de la sortie : </span>{{ sortie.dateHeureDebut | date("d/m/Y") }} </p>
+        <p><span>Campus : </span>{{ sortie.campus }} </p>
+        <p><span>Lieu : </span>{{ sortie.lieu }} </p>
+
+        <label for="infoSortie">Infos sortie</label>
+        {{ form_widget(annulationData.infosSortie) }}
+
+        <div id="sortie-btns">
+            <input method="POST" name="save" type="submit" class="btn" value="Enregistrer">
+            <button type="reset" class="btn">Annuler</button>
+        </div>
+        {{ form_end(annulationData) }}
+
+    </div>
+{% endblock %}
+
