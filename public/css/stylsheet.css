@@ -220,6 +220,24 @@ body {
         flex-direction: row;
     }
 
+    .form_accueil {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+    }
+
+    .listing {
+        display: flex;
+        width: auto;
+    }
+
+    .btn {
+        display: flex;
+        width: auto;
+        justify-content: center;
+        flex-direction: row;
+    }
+
     header .user-nav a {
         margin-left: 20px;
     }
