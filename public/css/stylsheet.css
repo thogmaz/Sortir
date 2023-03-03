@@ -16,6 +16,9 @@
     font-weight: bold;
 }
 
+#listing-message{
+    text-align: center;
+}
 
 #container-profil {
     display: flex;

@@ -16,7 +16,6 @@ class ProfilController extends AbstractController
     #[Route('/profil', name: 'app_profil')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        // just set up a fresh $task object (remove the example data)
         $profil = $this->getUser();
 
         $form = $this->createForm(ProfilType::class, $profil);

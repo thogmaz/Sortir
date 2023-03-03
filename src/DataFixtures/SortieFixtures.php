@@ -16,7 +16,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $balade = new Sortie();
         $balade->setNom("balade");
         $balade->setDateHeureDebut(new \DateTimeImmutable('2023-02-21 12:00:00'));
-        $balade->setDuree(new \DateTimeImmutable('02:30:00'));
+        $balade->setDuree(150);
         $balade->setDateLimiteInscription(new \DateTimeImmutable('2023-02-20 12:00:00'));
         $balade->setOrganisateur($this->getReference("virginie"));
         $balade->setNbInscriptionsMax(20);
@@ -29,9 +29,9 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
 
         $fete = new Sortie();
         $fete->setNom("fete");
-        $fete->setDateHeureDebut(new \DateTimeImmutable('2023-02-28 20:00:00'));
-        $fete->setDuree(new \DateTimeImmutable('03:30:00'));
-        $fete->setDateLimiteInscription(new \DateTimeImmutable('2023-02-27 20:00:00'));
+        $fete->setDateHeureDebut((new \DateTimeImmutable())->add(new \DateInterval('P20D')));
+        $fete->setDuree(210);
+        $fete->setDateLimiteInscription((new \DateTimeImmutable())->add(new \DateInterval('P19D')));
         $fete->setOrganisateur($this->getReference("kenza"));
         $fete->setNbInscriptionsMax(30);
         $fete->setInfosSortie("fete");
@@ -42,9 +42,9 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
 
         $match = new Sortie();
         $match->setNom("match");
-        $match->setDateHeureDebut(new \DateTimeImmutable('2023-03-12 16:00:00'));
-        $match->setDuree(new \DateTimeImmutable('03:30:00'));
-        $match->setDateLimiteInscription(new \DateTimeImmutable('2023-03-11 16:00:00'));
+        $match->setDateHeureDebut((new \DateTimeImmutable())->add(new \DateInterval('P8D')));
+        $match->setDuree(210);
+        $match->setDateLimiteInscription((new \DateTimeImmutable())->add(new \DateInterval('P7D')));
         $match->setOrganisateur($this->getReference("thomas"));
         $match->setNbInscriptionsMax(35);
         $match->setInfosSortie("match de foot");
@@ -57,9 +57,9 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
 
         $laserGame = new Sortie();
         $laserGame->setNom("laser-game");
-        $laserGame->setDateHeureDebut(new \DateTimeImmutable('2023-07-12 19:00:00'));
-        $laserGame->setDuree(new \DateTimeImmutable('01:30:00'));
-        $laserGame->setDateLimiteInscription(new \DateTimeImmutable('2023-06-11 19:00:00'));
+        $laserGame->setDateHeureDebut((new \DateTimeImmutable())->add(new \DateInterval('P120D')));
+        $laserGame->setDuree(90);
+        $laserGame->setDateLimiteInscription((new \DateTimeImmutable())->add(new \DateInterval('P119D')));
         $laserGame->setOrganisateur($this->getReference("thomas"));
         $laserGame->setNbInscriptionsMax(10);
         $laserGame->setInfosSortie("Partie de laser game");
@@ -73,7 +73,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $escalade = new Sortie();
         $escalade->setNom("escalade");
         $escalade->setDateHeureDebut(new \DateTimeImmutable('2022-12-09 14:00:00'));
-        $escalade->setDuree(new \DateTimeImmutable('02:15:00'));
+        $escalade->setDuree(135);
         $escalade->setDateLimiteInscription(new \DateTimeImmutable('2023-06-11 14:00:00'));
         $escalade->setOrganisateur($this->getReference("virginie"));
         $escalade->setNbInscriptionsMax(6);
@@ -88,7 +88,7 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $piscine = new Sortie();
         $piscine->setNom("piscine");
         $piscine->setDateHeureDebut(new \DateTimeImmutable('2023-02-25 20:00:00'));
-        $piscine->setDuree(new \DateTimeImmutable('03:00:00'));
+        $piscine->setDuree(180);
         $piscine->setDateLimiteInscription(new \DateTimeImmutable('2023-02-24 20:00:00'));
         $piscine->setOrganisateur($this->getReference("Anna"));
         $piscine->setNbInscriptionsMax(8);
@@ -97,6 +97,20 @@ class SortieFixtures extends Fixture implements DependentFixtureInterface
         $piscine->setEtat($this->getReference("annulée"));
         $piscine->setLieu($this->getReference("piscine-niort"));
         $manager->persist($piscine);
+
+        $rando = new Sortie();
+        $rando->setNom("randonnée");
+        $rando->setDateHeureDebut((new \DateTimeImmutable())->add(new \DateInterval('P30D')));
+        $rando->setDuree(240);
+        $rando->setDateLimiteInscription((new \DateTimeImmutable())->add(new \DateInterval('P29D')));
+        $rando->setOrganisateur($this->getReference("virginie"));
+        $rando->setNbInscriptionsMax(2);
+        $rando->setInfosSortie("Bien s'équiper !");
+        $rando->setCampus($this->getReference("campus-rennes"));
+        $rando->setEtat($this->getReference("ouverte"));
+        $rando->setLieu($this->getReference("parc-rennes"));
+        $rando->addParticipant($this->getReference("michel"));
+        $manager->persist($rando);
 
         $manager->flush();
     }

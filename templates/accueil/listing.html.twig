@@ -1,5 +1,21 @@
 {% block body %}
     <div>
+        <div id="listing-message">
+            <div>
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div>
+                {% for message in app.flashes('error') %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
         <table>
             <thead>
             <tr>
@@ -31,7 +47,8 @@
                                 {% if app.user in s.participants %}
                                     <a href="#" title="se désister">Se désister</a><br>
                                 {% else %}
-                                    <a href="#" title="s'inscrire">S'inscrire</a>
+                                    <a href="{{ path('app_subscription', {'id': s.id}) }}"
+                                       title="s'inscrire">S'inscrire</a>
                                 {% endif %}
                                 {% if app.user == s.organisateur %}
                                     <a href="#" title="annuler">Annuler</a>

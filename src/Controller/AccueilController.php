@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Sortie;
 use App\Form\SearchForm;
+use App\Repository\ParticipantRepository;
 use App\Repository\SortieRepository;
 use App\Service\SearchData;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,7 +27,31 @@ class AccueilController extends AbstractController
 
         return $this->render('accueil/accueil.html.twig', [
             'sorties' => $sorties,
-            'search'=>$form->createView()
+            'search' => $form->createView()
         ]);
     }
+
+    #[Route('/subscription/{id}', name: 'app_subscription')]
+    public function newSubscription(SortieRepository $sortieRepository, ParticipantRepository $participantRepository, EntityManagerInterface $entityManager, int $id): Response
+    {
+        //récupère la sortie
+        $sortie = $sortieRepository->find($id);
+
+        //compare le nb d'inscrits avec le nb max de participants possible
+        if (($sortie->getParticipants()->count()) == ($sortie->getNbInscriptionsMax())) {
+            $this->addFlash('error', "Le nombre de participants maximum est atteint, vous ne pouvez pas vous inscrire");
+        } else {
+            //récupère le participant
+            $participant = $this->getUser();
+            $sortie->addParticipant($participant);
+            $entityManager->flush();
+            $this->addFlash('success', "Vous êtes inscrit !");
+        }
+        return $this->redirectToRoute('app_accueil');
+    }
 }
+
+
+
+
+
